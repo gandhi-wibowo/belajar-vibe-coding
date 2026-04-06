@@ -1,0 +1,46 @@
+meta {
+  name: Registrasi User
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/api/users
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "gandhi",
+    "email": "gandhi@email.com",
+    "password": "passwordrahasia"
+  }
+}
+
+docs {
+  # Registrasi User Baru
+  
+  Endpoint ini digunakan untuk mendaftarkan user baru ke dalam sistem.
+  
+  ## Request Body
+  - `name` (String): Nama lengkap user.
+  - `email` (String): Alamat email unik.
+  - `password` (String): Password user (akan dihash otomatis).
+  
+  ## Response
+  
+  ### Success (200 OK)
+  ```json
+  {
+    "message": "OK"
+  }
+  ```
+  
+  ### Failed (400 Bad Request - Email sudah terdaftar)
+  ```json
+  {
+    "message": "Email sudah terdaftar"
+  }
+  ```
+}
