@@ -1,5 +1,10 @@
 {
   "name": "belajar-vibe-coding",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push"
+  },
   "module": "index.ts",
   "type": "module",
   "private": true,
