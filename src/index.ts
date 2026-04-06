@@ -1,22 +1,12 @@
 import { Elysia } from "elysia";
-import { db } from "./db";
+import { userRoutes } from "./routes/user.routes";
 
 const app = new Elysia()
-  .decorate("db", db)
+  .use(userRoutes)
   .get("/", () => ({
     message: "Welcome to Elysia + Drizzle + MySQL!",
     status: "running"
   }))
-  .get("/users", async ({ db }) => {
-    // This is just a demonstration. 
-    // In a real app, you'd handle potential connection errors or empty results.
-    try {
-      const allUsers = await db.query.users.findMany();
-      return allUsers;
-    } catch (e) {
-      return { error: "Database connection failed. Please check your .env" };
-    }
-  })
   .listen(3000);
 
 console.log(
